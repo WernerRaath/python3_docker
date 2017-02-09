@@ -17,7 +17,6 @@ RUN apt-get update \
     python-numpy \
     python-scipy \
     ipython \
-    nginx \
     python-pyexiv2 \
     libatlas-dev libatlas3gf-base \
     curl python3-shapely python3-jinja2 python3-yaml \
@@ -29,7 +28,8 @@ RUN apt-get update \
     && cd "/tmp/su-exec-${SUEXEC_VER}" \
     && make \
     && cp -af su-exec /usr/bin/ \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && ln -fs /usr/bin/python3.4 /usr/bin/python
 
 ENV PATH=/usr/bin:$PATH
 
